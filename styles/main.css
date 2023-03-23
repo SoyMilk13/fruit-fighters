@@ -1,0 +1,149 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#version {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 15px;
+}
+
+#viewChangelogButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
+    padding: 5px 15px;
+    border: 3px solid darkblue;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 15px;
+}
+
+#viewChangelogButton:hover {
+    transition-duration: 0.2s;
+    background-color: rgb(0, 0, 230);
+}
+
+#changelog {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 2px solid darkorange;
+    border-radius: 5px;
+    background-color: orange;
+    font-family: 'Mukta Vaani', sans-serif;
+}
+
+#changelogTitle {
+    margin: 1%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#closeChangelog {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.updateSection {
+    margin-bottom: 1%;
+}
+
+.updateHeader {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.updateContent {
+    list-style-type: none;
+}
+
+.updateHeader,
+.updateContent {
+    margin-left: 5%;
+}
+
+#viewHowToPlayButton {
+    position: absolute;
+    top: 7%;
+    left: 0;
+    margin: 5px;
+    padding: 5px 15px;
+    border: 3px solid darkblue;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 15px;
+}
+
+#viewHowToPlayButton:hover {
+    transition-duration: 0.2s;
+    background-color: rgb(0, 0, 230);
+}
+
+#howToPlay {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 2px solid darkorange;
+    border-radius: 5px;
+    background-color: orange;
+    font-family: 'Mukta Vaani', sans-serif;
+}
+
+#howToPlayTitle {
+    margin: 1%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#closeHowToPlay {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.explanationSection {
+    margin-bottom: 1%;
+}
+
+.explanationHeader {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.explanationContent {
+    list-style-type: none;
+}
+
+.explanationHeader,
+.explanationContent {
+    margin-left: 5%;
+    margin-right: 5%;
+}
