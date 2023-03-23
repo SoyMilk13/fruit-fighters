@@ -93,7 +93,7 @@ function initFruit(value) {
     let rightSideSpawn = genRandomNumber(1, 2) == 1;
     let newFruit = game.add.sprite((value == 2) ? ((rightSideSpawn) ? (game.world.width - 600) : game.world.width + 0) : (game.world.width - (genRandomNumber(250, 350))), (value == 2) ? (game.world.height * 0.5) : (game.world.height), `${(pepper) ? 'pepper' : (bomb) ? 'bomb' : fruitType}`);
     newFruit.anchor.set(0.5);
-    newFruit.scale.set(0.5);
+    newFruit.scale.set(0.6);
     let explode = newFruit.animations.add('bomb-explosion', [0, 1, 2, 0, 1, 2, 0, 1, 2], 24);
     game.physics.enable(newFruit, Phaser.Physics.ARCADE);
     newFruit.body.velocity.set((value == 2) ? ((rightSideSpawn) ? 150 : -150) : 0, (value == 2) ? -20 : -175);
