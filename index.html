@@ -8,11 +8,17 @@
         <script src="scripts/phaser.min.js"></script>
     </head>
     <body>
-        <p id="version">Version 1.4</p>
+        <p id="version">Version 1.5</p>
         <button id="viewChangelogButton" onclick="toggleChangelog(1)">View Changelog</button>
         <div id="changelog" style="display: none">
             <p id="closeChangelog" onclick="toggleChangelog(0)">X</p>
             <p id="changelogTitle">Changelog</p>
+            <div class="updateSection">
+                <p class="updateHeader">Version 1.5 Update:</p>
+                <ul class="updateContent">
+                    <li>Fixed bug where peppers acted as bombs.</li>
+                </ul>
+            </div>
             <div class="updateSection">
                 <p class="updateHeader">Version 1.4 Update:</p>
                 <ul class="updateContent">
