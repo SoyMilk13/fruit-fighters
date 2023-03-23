@@ -35,8 +35,7 @@ function preload() {
     game.load.image('watermelon', 'images/fruit-watermelon.png');
     game.load.image('strawberry', 'images/fruit-strawberry.png');
     game.load.image('pepper', 'images/fruit-pepper.png');
-    game.load.image('bomb', 'images/fruit-bomb.png');
-    game.load.spritesheet('bomb-explosion', 'images/fruit-bomb-explosion.png', 64, 64, 3);
+    game.load.spritesheet('bomb', 'images/fruit-bomb.png', 64, 64, 4);
     game.load.spritesheet('start-button', 'images/start-button-transparent-hover.png', 120, 40);
     game.load.image('background', 'images/background.png');
 };
@@ -91,10 +90,10 @@ function initFruit(value) {
     let gravityX = genRandomNumber(5, 12);
     let fruitType = genFruitType();
     let rightSideSpawn = genRandomNumber(1, 2) == 1;
-    let newFruit = game.add.sprite((value == 2) ? ((rightSideSpawn) ? (game.world.width - 600) : game.world.width + 0) : (game.world.width - (genRandomNumber(250, 350))), (value == 2) ? (game.world.height * 0.5) : (game.world.height), `${(pepper) ? 'pepper' : (bomb) ? 'bomb' : fruitType}`);
+    let newFruit = game.add.sprite((value == 2) ? ((rightSideSpawn) ? (game.world.width - 600) : game.world.width + 0) : (game.world.width - (genRandomNumber(250, 350))), (value == 2) ? (game.world.height * 0.5) : (game.world.height), `${(pepper) ? 'pepper' : (bomb) ? 'bomb' : fruitType}`, (bomb) ? 0 : null);
     newFruit.anchor.set(0.5);
     newFruit.scale.set(0.6);
-    let explode = newFruit.animations.add('bomb-explosion', [0, 1, 2, 0, 1, 2, 0, 1, 2], 24);
+    let explode = newFruit.animations.add('explode', [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3], 10);
     game.physics.enable(newFruit, Phaser.Physics.ARCADE);
     newFruit.body.velocity.set((value == 2) ? ((rightSideSpawn) ? 150 : -150) : 0, (value == 2) ? -20 : -175);
     newFruit.body.gravity.y = genRandomNumber(45, 90);
@@ -116,8 +115,8 @@ function initFruit(value) {
             scoreText.setText(`Score: ${score}`);
         }
         if (bomb) {
-            explode.play();
-            explode.onComplete.addOnce(() => {
+            newFruit.animations.play('explode', 10, false);
+            explode.onComplete.add(() => {
                 newFruit.kill();
             }, this);
             lives--;
