@@ -85,8 +85,8 @@ function startGame() {
 };
 
 function initFruit(value) {
-    let bomb = genRandomNumber(1, 3) == 3;
     let pepper = genRandomNumber(1, 20) == 20;
+    let bomb = (pepper) ? false : genRandomNumber(1, 3) == 3;
     let right = genRandomNumber(1, 2) == 2;
     let gravityX = genRandomNumber(5, 12);
     let fruitType = genFruitType();
