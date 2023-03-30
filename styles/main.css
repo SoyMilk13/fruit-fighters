@@ -147,3 +147,8 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+
+@font-face {
+    font-family: 'Mukta Vaani';
+    src: url('https://github.com/SoyMilk13/fruit-fighters/blob/main/font/MuktaVaani-Regular.ttf') format('truetype');
+}
