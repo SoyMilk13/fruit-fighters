@@ -26,6 +26,7 @@ class Text {
     Draw(innerHTML) {
         const text = document.createElement('plaintext');
         text.style.fontWeight = 'normal';
+        text.style.fontFamily = 'Mukta Vaani';
         text.innerHTML = innerHTML;
         text.style.color = 'orange';
         text.style.textAlign = 'justify';
@@ -77,6 +78,7 @@ class Title {
         const text = document.createElement('plaintext');
         text.style.fontSize = '5vh';
 		text.style.fontWeight = 'normal';
+        text.style.fontFamily = 'Mukta Vaani';
 		text.innerHTML = innerHTML;
 		text.style.color = 'orange';
 		text.style.textAlign = 'center';
@@ -99,6 +101,7 @@ class PlayButton {
     };
     Draw(innerHTML) {
         const button = document.createElement('button');
+        button.style.fontFamily = 'Mukta Vaani';
         button.innerHTML = innerHTML;
         button.style.fontSize = '2vh';
         button.style.color = 'white';
@@ -111,7 +114,7 @@ class PlayButton {
         button.style.left = '50%';
         button.style.transform = 'translate(-50%, -50%)';
 
-        button.onclick = () => { location.replace('https://soymilk13.github.io/fruit-fighters/game.html'); };
+        button.onclick = () => { location.replace('file:///C:/Users/Redux/Desktop/fruit-fighters/game.html'); };
 
         document.body.appendChild(button);
     };
@@ -124,6 +127,7 @@ class Version {
     Draw() {
         const text = document.createElement('plaintext');
         text.style.fontWeight = 'normal';
+        text.style.fontFamily = 'Mukta Vaani';
 		text.innerHTML = 'Fruit Fighters Version ' + version;
 		text.style.color = '#dcdcdc'
 		text.style.width = '15vw'
