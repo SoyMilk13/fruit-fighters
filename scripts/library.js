@@ -111,7 +111,7 @@ class PlayButton {
         button.style.left = '50%';
         button.style.transform = 'translate(-50%, -50%)';
 
-        button.onclick = () => { location.replace('file:///C:/Users/Redux/Desktop/fruit-fighters/game.html'); };
+        button.onclick = () => { location.replace('https://soymilk13.github.io/fruit-fighters/game.html'); };
 
         document.body.appendChild(button);
     };
