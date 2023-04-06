@@ -8,50 +8,13 @@
         <script src="scripts/phaser.min.js"></script>
     </head>
     <body>
-        <p id="version">Version 1.6</p>
         <button id="viewChangelogButton" onclick="toggleChangelog(1)">View Changelog</button>
         <div id="changelog" style="display: none">
             <p id="closeChangelog" onclick="toggleChangelog(0)">X</p>
-            <p id="changelogTitle">Changelog</p>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.6 Update:</p>
-                <ul class="updateContent">
-                    <li>Added animations when bombs are clicked.</li>
-                </ul>
+            <div id="changelogTitleBox">
+                <p id="changelogTitle">Changelog</p>
             </div>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.5 Update:</p>
-                <ul class="updateContent">
-                    <li>Fixed bug where peppers acted as bombs.</li>
-                    <li>Updated fruit scale-- They should now appear larger on-screen.</li>
-                </ul>
-            </div>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.4 Update:</p>
-                <ul class="updateContent">
-                    <li>Added "Peppers;" when clicked, they will grant you double points for ten seconds.</li>
-                    <li>Added "Strawberries"</li>
-                </ul>
-            </div>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.3 Update:</p>
-                <ul class="updateContent">
-                    <li>Added "How to Play" section.</li>
-                </ul>
-            </div>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.2 Update:</p>
-                <ul class="updateContent">
-                    <li>Added "Changelog"</li>
-                </ul>
-            </div>
-            <div class="updateSection">
-                <p class="updateHeader">Version 1.1 Update:</p>
-                <ul class="updateContent">
-                    <li>Added "Watermelons"</li>
-                    <li>Fixed bug where fruits spawned off-screen.</li>
-                </ul>
-            </div>
+            <div id="changelogContent"></div>
         </div>
         <button id="viewHowToPlayButton" onclick="toggleHowToPlay(1)">How to Play</button>
         <div id="howToPlay" style="display: none">
@@ -67,5 +30,7 @@
             </div>
         </div>
         <script src="scripts/game.js"></script>
+        <script src="scripts/library.js"></script>
+        <script src="scripts/info.js"></script>
     </body>
 </html>
