@@ -244,9 +244,24 @@ function genRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+let totalHeight;
+let titleHeight;
+let remainingHeight;
+function setContentHeight() {
+    totalHeight = document.getElementById('changelog').clientHeight;
+    let margin = document.getElementById('changelogTitle').currentStyle || window.getComputedStyle(document.getElementById('changelogTitle'));
+    titleHeight = (document.getElementById('changelogTitleBox').clientHeight) + (parseFloat(margin.marginTop)) * 2;
+    remainingHeight = (totalHeight - titleHeight) - 2;
+    document.getElementById('changelogContent').style.height = remainingHeight + 'px';
+    window.addEventListener('resize', setContentHeight);
+};
+
 function toggleChangelog(value) {
     if (!playing) {
         document.getElementById('changelog').style.display = (value == 1) ? 'block' : 'none';
+        if (value == 1) {
+            setContentHeight();
+        }
     }
 };
 
