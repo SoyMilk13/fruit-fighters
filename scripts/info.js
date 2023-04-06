@@ -6,7 +6,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Version 1.7 Update!', null);
+new Announcement('Version 1.7 Update!', 'Make sure to read the changelog for full update documentation.');
 window.onload = () => {
     let shown = localStorage.getItem('announcementShown') === 'true';
     if (shown) {
