@@ -3,14 +3,6 @@
     margin: 0;
 }
 
-#version {
-    position: absolute;
-    bottom: 0;
-    right: 5px;
-    font-family: 'Mukta Vaani', sans-serif;
-    font-size: 15px;
-}
-
 #viewChangelogButton {
     position: absolute;
     top: 0;
@@ -38,8 +30,6 @@
     width: 40%;
     height: 50%;
     transform: translate(-50%, -50%);
-    overflow-x: hidden;
-    overflow-y: auto;
     border: 2px solid darkorange;
     border-radius: 5px;
     background-color: orange;
@@ -61,22 +51,10 @@
     font-weight: bold;
 }
 
-.updateSection {
-    margin-bottom: 1%;
-}
-
-.updateHeader {
-    font-weight: bold;
-    font-size: 17px;
-}
-
-.updateContent {
-    list-style-type: none;
-}
-
-.updateHeader,
-.updateContent {
-    margin-left: 5%;
+#changelogContent {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #viewHowToPlayButton {
@@ -146,4 +124,9 @@
 .explanationContent {
     margin-left: 5%;
     margin-right: 5%;
+}
+
+@font-face {
+    font-family: 'Mukta Vaani';
+    src: url('https://soymilk13.github.io/fruit-fighters/font/MuktaVaani-Regular.ttf') format('truetype');
 }
