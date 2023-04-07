@@ -132,3 +132,16 @@
     font-family: 'Mukta Vaani';
     src: url('https://soymilk13.github.io/fruit-fighters/font/MuktaVaani-Regular.ttf') format('truetype');
 }
+
+#socialIcons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+}
+
+.socialIcon {
+    width: 46px;
+    height: 46px;
+    margin: 5px;
+}
