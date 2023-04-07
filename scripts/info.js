@@ -7,12 +7,6 @@ new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
 new Announcement('Join our Discord server!', 'Follow this link, (https://discord.gg/kASrYbpt4w), or click the button in the top right corner of your screen.');
-window.onload = () => {
-    let shown = localStorage.getItem('announcementShown') === 'true';
-    if (shown) {
-        document.getElementById('announcementBox').style.display = 'none';
-    }
-};
 
 new Version;
 
