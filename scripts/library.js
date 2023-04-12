@@ -54,7 +54,8 @@ class Announcement {
         announcementBox.style.position = 'absolute';
         announcementBox.style.left = '50%';
         announcementBox.style.top = '50%';
-        announcementBox.style.width = '40%';
+        announcementBox.style.width = 'fit-content';
+        announcementBox.style.minWidth = '40%';
         announcementBox.style.height = 'flex';
         announcementBox.style.minHeight = '10%';
         announcementBox.style.transform = 'translate(-50%, -50%)';
