@@ -272,3 +272,30 @@ function toggleHowToPlay(value) {
         document.getElementById('howToPlay').style.display = (value == 1) ? 'block' : 'none';
     }
 };
+
+function toggleAlmanac(value) {
+    if (!playing) {
+        document.getElementById('almanac').style.display = (value == 1) ? 'block' : 'none';
+    }
+};
+
+function changeAlmanacTab(value) {
+    let tabs = ['orangeTab', 'watermelonTab', 'strawberryTab', 'pepperTab', 'bombTab'];
+    tabs.forEach(element => document.getElementById(`${element}`).classList.remove('activeAlmanacTab'));
+    document.getElementById(`${(value == 0) ? 'orangeTab' : (value == 1) ? 'watermelonTab' : (value == 2) ? 'strawberryTab' : (value == 3) ? 'pepperTab' : 'bombTab'}`).classList.add('activeAlmanacTab');
+    let pages = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb']
+    pages.forEach(element => document.getElementById(`${element}`).style.display = 'none');
+    document.getElementById(`${(value == 0) ? 'almanacContentOrange' : (value == 1) ? 'almanacContentWatermelon' : (value == 2) ? 'almanacContentStrawberry' : (value == 3) ? 'almanacContentPepper' : 'almanacContentBomb'}`).style.display = 'block';
+};
+
+let totalHeightA;
+let titleHeightA;
+let remainingHeightA;
+function setAlmanacContentHeight() {
+    totalHeightA = document.getElementById('almanac').clientHeight;
+    titleHeightA = document.getElementById('almanacTop').clientHeight;
+    remainingHeightA = (totalHeightA - titleHeightA) - 2;
+    let tabsContent = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb'];
+    tabsContent.forEach(element => document.getElementById(`${element}`).style.height = remainingHeightA + 'px');
+    window.addEventListener('resize', setAlmanacContentHeight);
+};
