@@ -218,7 +218,9 @@ function genFruitType() {
 
 function gameLost() {
     alert(`You lost! Your final score was ${score}.`);
-    localStorage.setItem('highScore', score);
+    if (score > highScore) {
+        localStorage.setItem('highScore', score);
+    }
     location.reload();
 };
 
