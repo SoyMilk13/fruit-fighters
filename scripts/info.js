@@ -16,3 +16,9 @@ function socialInvite(value) {
         location.replace('https://discord.gg/kASrYbpt4w');
     }
 };
+
+new AlmanacPage('images/fruit-orange.png', 'Orange', '33%', '10', 'None', 'The orange was the first fruit added to Fruit Fighters.');
+new AlmanacPage('images/fruit-watermelon.png', 'Watermelon', '33%', '10', 'None', 'Legend has it that a watermelon variant may be coming soon...');
+new AlmanacPage('images/fruit-strawberry.png', 'Strawberry', '33%', '10', 'None', "Strawberries are the developer's favorite fruit!");
+new AlmanacPage('images/fruit-pepper.png', 'Pepper', '5%', '10', 'When clicked, for 10 seconds, all fruits are worth double points.', 'The pepper was one of the most difficult fruits to create.');
+new AlmanacPage('images/fruit-bomb-almanac-image.png', 'Bomb', '33%', '10', "When clicked, the user is deducted one life. (Don't do this!)", 'The orange was the first fruit added to Fruit Fighters.');
