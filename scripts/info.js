@@ -6,7 +6,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Join our Discord server!', 'Follow this link, (https://discord.gg/kASrYbpt4w), or click the button in the top right corner of your screen.');
+new Announcement('Minor Update: Version 1.7.1', 'Fixed announcement scaling and solved bug where high scores did not save properly.');
 
 new Version;
 
