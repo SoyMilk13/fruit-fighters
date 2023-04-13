@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-#viewChangelogButton {
+.mainButtons {
     margin: 5px;
     padding: 5px 15px;
     border: 3px solid darkblue;
@@ -22,7 +22,7 @@
     font-size: 15px;
 }
 
-#viewChangelogButton:hover {
+.mainButtons:hover {
     transition-duration: 0.2s;
     background-color: rgb(0, 0, 230);
 }
@@ -60,22 +60,6 @@
     display: block;
     overflow-x: hidden;
     overflow-y: auto;
-}
-
-#viewHowToPlayButton {
-    margin: 5px;
-    padding: 5px 15px;
-    border: 3px solid darkblue;
-    border-radius: 5px;
-    background-color: blue;
-    color: white;
-    font-family: 'Mukta Vaani', sans-serif;
-    font-size: 15px;
-}
-
-#viewHowToPlayButton:hover {
-    transition-duration: 0.2s;
-    background-color: rgb(0, 0, 230);
 }
 
 #howToPlay {
@@ -144,4 +128,60 @@
     width: 46px;
     height: 46px;
     margin: 5px;
+}
+
+#almanac {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 2px solid darkorange;
+    border-radius: 5px;
+    background-color: orange;
+    font-family: 'Mukta Vaani', sans-serif;
+}
+
+#almanacNav {
+    list-style-type: none;
+    background-color: rgb(237, 154, 0);
+    width: 100%;
+    overflow-y: hidden;
+}
+
+#almanacNav:first-child {
+    padding-left: 1%;
+}
+
+#almanacNav:last-child {
+    padding-right: 1%;
+}
+
+.almanacTab {
+    display: inline;
+    background-color: rgb(255, 184, 51);
+    border: 2px solid black;
+    border-bottom: none;
+    padding: 1%;
+}
+
+.activeAlmanacTab {
+    background-color: orange;
+}
+
+#closeAlmanac {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.almanacContent {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
