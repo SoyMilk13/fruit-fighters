@@ -9,8 +9,9 @@
     </head>
     <body>
         <div id="mainButtons">
-            <button id="viewChangelogButton" onclick="toggleChangelog(1)">View Changelog</button>
-            <button id="viewHowToPlayButton" onclick="toggleHowToPlay(1)">How to Play</button>
+            <button id="viewChangelogButton" class="mainButtons" onclick="toggleChangelog(1)">View Changelog</button>
+            <button id="viewHowToPlayButton" class="mainButtons" onclick="toggleHowToPlay(1)">How to Play</button>
+            <button id="viewAlmanacButton" class="mainButtons" onclick="toggleAlmanac(1)">Almanac</button>
         </div>
         <div id="changelog" style="display: none">
             <p id="closeChangelog" onclick="toggleChangelog(0)">X</p>
@@ -33,6 +34,23 @@
         </div>
         <div id="socialIcons">
             <img class="socialIcon" src="images/discord-logo.png" onclick="socialInvite(0)" />
+        </div>
+        <div id="almanac" style="display: none">
+            <div id="almanacTop">
+                <p id="closeAlmanac" onclick="toggleAlmanac(0)">X</p>
+                <ul id="almanacNav">
+                    <li id="orangeTab" class="almanacTab activeAlmanacTab" onclick="changeAlmanacTab(0)">Orange</li>
+                    <li id="watermelonTab" class="almanacTab" onclick="changeAlmanacTab(1)">Watermelon</li>
+                    <li id="strawberryTab" class="almanacTab" onclick="changeAlmanacTab(2)">Strawberry</li>
+                    <li id="pepperTab" class="almanacTab" onclick="changeAlmanacTab(3)">Pepper</li>
+                    <li id="bombTab" class="almanacTab" onclick="changeAlmanacTab(4)">Bomb</li>
+                </ul>
+            </div>
+            <div id="almanacContentOrange" class="almanacContent"></div>
+            <div id="almanacContentWatermelon" class="almanacContent" style="display: none"></div>
+            <div id="almanacContentStrawberry" class="almanacContent" style="display: none"></div>
+            <div id="almanacContentPepper" class="almanacContent" style="display: none"></div>
+            <div id="almanacContentBomb" class="almanacContent" style="display: none"></div>
         </div>
         <script src="scripts/game.js"></script>
         <script src="scripts/library.js"></script>
