@@ -97,6 +97,80 @@ class Announcement {
     };
 };
 
+class AlmanacPage {
+    constructor(image, title, spawnRate, pointValue, specialFacts, description) {
+        this.Draw(image, title, spawnRate, pointValue, specialFacts, description);
+    };
+    Draw(image, title, spawnRate, pointValue, specialFacts, description) {
+        const fruitImage = document.createElement('img');
+        fruitImage.src = image;
+        fruitImage.style.margin = '5%';
+        fruitImage.style.marginRight = '7%';
+        fruitImage.style.border = '2px solid black';
+        fruitImage.style.borderRadius = '5px';
+        fruitImage.style.backgroundImage = 'url("images/background.png")';
+        fruitImage.style.backgroundSize = '300px';
+        fruitImage.style.width = '100px';
+        fruitImage.style.height = '100px';
+
+        const mainSection = document.createElement('div');
+        mainSection.style.display = 'flex';
+        mainSection.style.alignItems = 'center';
+
+        const fruitName = document.createElement('plaintext');
+        fruitName.innerHTML = title;
+        fruitName.style.position = 'absolute';
+        fruitName.style.left = '50%';
+        fruitName.style.transform = 'translate(-50%)';
+        fruitName.style.margin = '5px';
+        fruitName.style.fontSize = '17px';
+        fruitName.style.fontWeight = 'bold';
+        fruitName.style.fontFamily = 'Mukta Vaani';
+
+        const mainStats = document.createElement('div');
+
+        const statsHeader = document.createElement('plaintext');
+        statsHeader.innerHTML = 'Stats:';
+        statsHeader.style.fontWeight = 'bold';
+        statsHeader.style.fontFamily = 'Mukta Vaani';
+
+        const spawnRateText = document.createElement('plaintext');
+        spawnRateText.innerHTML = 'Spawn Rate: ' + spawnRate;
+        spawnRateText.style.fontFamily = 'Mukta Vaani';
+
+        const pointValueText = document.createElement('plaintext');
+        pointValueText.innerHTML = 'Points Per Click: ' + pointValue;
+        pointValueText.style.fontFamily = 'Mukta Vaani';
+
+        const specialFactsText = document.createElement('plaintext');
+        specialFactsText.innerHTML = 'Special Attributes: ' + specialFacts;
+        specialFactsText.style.fontFamily = 'Mukta Vaani';
+
+        const otherInfoHeader = document.createElement('plaintext');
+        otherInfoHeader.innerHTML = 'Other Information:';
+        otherInfoHeader.style.fontWeight = 'bold';
+        otherInfoHeader.style.marginLeft = '2%';
+        otherInfoHeader.style.fontFamily = 'Mukta Vaani';
+
+        const fruitDescriptionText = (description !== null) ? document.createElement('plaintext') : null;
+        (description !== null) ? fruitDescriptionText.innerHTML = description : null;
+        (description !== null) ? fruitDescriptionText.style.marginLeft = '2%' : null;
+        (description !== null) ? fruitDescriptionText.style.fontFamily = 'Mukta Vaani' : null;
+
+        const contentPage = document.getElementById(`${(title == 'Orange') ? 'almanacContentOrange' : (title == 'Watermelon') ? 'almanacContentWatermelon' : (title == 'Strawberry') ? 'almanacContentStrawberry' : (title == 'Pepper') ? 'almanacContentPepper' : 'almanacContentBomb'}`);
+        contentPage.appendChild(fruitName);
+        mainSection.appendChild(fruitImage);
+        mainStats.appendChild(statsHeader);
+        mainStats.appendChild(spawnRateText);
+        mainStats.appendChild(pointValueText);
+        mainStats.appendChild(specialFactsText);
+        mainSection.appendChild(mainStats);
+        contentPage.appendChild(mainSection);
+        contentPage.appendChild(otherInfoHeader);
+        (description !== null) ? contentPage.appendChild(fruitDescriptionText) : null;
+    };
+};
+
 class Version {
     constructor() {
         this.Draw();
