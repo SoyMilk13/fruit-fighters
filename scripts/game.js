@@ -14,6 +14,7 @@ let score = 0;
 let scoreText;
 let lives = 3;
 let livesText;
+let lifeLostText;
 let time = 0;
 let timeMin = 0;
 let timeSec = 0;
@@ -25,6 +26,8 @@ let newHighScoreText;
 let doubleTime;
 let doubleTimeText;
 let doubleTimeTime = 10;
+let pausedText;
+let pausedInfoText;
 
 function preload() {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -43,11 +46,16 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.checkCollision.down = false;
     background = game.add.tileSprite(0, 0, 600, 400, 'background');
-    checkForDoubleSpawn = setInterval(checkForIncreasedFruitSpawn, 1000);
     let style = { font: '18px Arial', fill: 'blue' };
     scoreText = game.add.text(5, 25, 'Score: 0', style);
     livesText = game.add.text(game.world.width - 5, 5, 'Lives: 3', style);
     livesText.anchor.set(1, 0);
+    lifeLostText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, 'Life Lost!', {
+        font: '20px Arial',
+        fill: 'red'
+    });
+    lifeLostText.anchor.set(0.5);
+    lifeLostText.visible = false;
     timeText = game.add.text(game.world.width * 0.5, 5, `${timeMin}:${(timeSec < 10) ? 0 : null}${timeSec}`, style);
     timeText.anchor.set(0.5, 0);
     highScoreText = game.add.text(5, 5, `High Score: ${highScore}`, style);
@@ -73,6 +81,18 @@ function create() {
     });
     doubleTimeText.anchor.set(0.5);
     doubleTimeText.visible = false;
+    pausedText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, 'Paused', {
+        font: '30px Arial',
+        fill: 'blue'
+    });
+    pausedText.anchor.set(0.5);
+    pausedText.visible = false;
+    pausedInfoText = game.add.text(game.world.width * 0.5, (game.world.height * 0.5) + 20, 'Press "p" to resume.', {
+        font: '20px Arial',
+        fill: 'blue'
+    });
+    pausedInfoText.anchor.set(0.5);
+    pausedInfoText.visible = false;
 };
 function update() {}
 
@@ -99,11 +119,11 @@ function initFruit(value) {
     newFruit.body.gravity.y = genRandomNumber(45, 90);
     newFruit.body.gravity.x = (right) ? gravityX : -gravityX;
     newFruit.inputEnabled = true;
-    newFruit.events.onInputDown.addOnce(() => {
+    newFruit.events.onInputDown.add(() => {
         if (pepper) {
             initDoubleTime();
         }
-        if (!bomb) {
+        if (!bomb && !paused) {
             score += (doubleTime) ? 20 : 10;
             if ((score > highScore) && !newHighScore && !doubleTime) {
                 newHighScoreText.visible = true;
@@ -114,18 +134,34 @@ function initFruit(value) {
             }
             scoreText.setText(`Score: ${score}`);
         }
-        if (bomb) {
+        if (bomb && !paused) {
             newFruit.animations.play('explode', 10, false);
             explode.onComplete.add(() => {
                 newFruit.kill();
             }, this);
             lives--;
+            if (doubleTime) {
+                doubleTimeText.visible = false;
+                lifeLostText.visible = true;
+                setTimeout(() => {
+                    lifeLostText.visible = false;
+                    if (doubleTime) {
+                        doubleTimeText.visible = true;
+                    }
+                }, 3000)
+            }
+            if (!doubleTime) {
+                lifeLostText.visible = true;
+                setTimeout(() => {
+                    lifeLostText.visible = false;
+                }, 3000)
+            }
             livesText.setText(`Lives: ${lives}`);
             if (!lives) {
                 gameLost();
             }
         }
-        if (!bomb) {
+        if (!bomb && !paused) {
             newFruit.kill();
         }
     }, this);
@@ -133,6 +169,22 @@ function initFruit(value) {
     newFruit.events.onOutOfBounds.add(() => {
         if (!bomb) {
             lives--;
+            if (doubleTime) {
+                doubleTimeText.visible = false;
+                lifeLostText.visible = true;
+                setTimeout(() => {
+                    lifeLostText.visible = false;
+                    if (doubleTime) {
+                        doubleTimeText.visible = true;
+                    }
+                }, 3000)
+            }
+            if (!doubleTime) {
+                lifeLostText.visible = true;
+                setTimeout(() => {
+                    lifeLostText.visible = false;
+                }, 3000)
+            }
             livesText.setText(`Lives: ${lives}`);
             if (!lives) {
                 gameLost();
@@ -147,18 +199,23 @@ function initFruit(value) {
     }
 };
 
-function initFruit2() {
-    initFruit(1);
+function extraSpawns() {
+    if (!paused) {
+        if (time >= 30) {
+            initFruit(1);
+        }
+        if (time >= 60) {
+            initFruit(1);
+        }
+        if (time >= 90) {
+            initFruit(2);
+        }
+        if (time >= 120) {
+            initFruit(2);
+        }
+    }
 };
-function initFruit3() {
-    initFruit(1);
-};
-function initFruit4() {
-    initFruit(2);
-};
-function initFruit5() {
-    initFruit(2);
-};
+setInterval(extraSpawns, 1000);
 
 function changeSpawnInterval() {
     clearInterval(spawnFruit);
@@ -186,29 +243,6 @@ function timer() {
         }
     }
     timeText.setText(`${timeMin}:${(timeSec < 10) ? 0 : ''}${timeSec}`);
-};
-
-function checkForIncreasedFruitSpawn() {
-    if (time >= 30 && !doubleSpawn) {
-        spawnFruitDouble = setInterval(initFruit2, 1000);
-        doubleSpawn = true;
-        clearInterval(checkForDoubleSpawn);
-        checkForTripleSpawn = setInterval(checkForIncreasedFruitSpawn, 1000);
-    } else if (time >= 60 && doubleSpawn && !tripleSpawn) {
-        spawnFruitTriple = setInterval(initFruit3, 1000);
-        tripleSpawn = true;
-        clearInterval(checkForTripleSpawn);
-        checkForFirstSideSpawn = setInterval(checkForIncreasedFruitSpawn, 1000);
-    } else if (time >= 90 && tripleSpawn && !sideSpawnOne) {
-        spawnFruitSidesOne = setInterval(initFruit4, 1000);
-        sideSpawnOne = true;
-        clearInterval(checkForFirstSideSpawn);
-        checkForSecondSideSpawn = setInterval(checkForIncreasedFruitSpawn, 1000);
-    } else if (time >= 120 && sideSpawnOne && !sideSpawnTwo) {
-        spawnFruitSidesTwo = setInterval(initFruit5, 1000);
-        sideSpawnTwo = true;
-        clearInterval(checkForSecondSideSpawn);
-    }
 };
 
 function genFruitType() {
@@ -299,3 +333,40 @@ function setAlmanacContentHeight() {
     tabsContent.forEach(element => document.getElementById(`${element}`).style.height = remainingHeightA + 'px');
     window.addEventListener('resize', setAlmanacContentHeight);
 };
+
+let paused = false;
+window.addEventListener('keydown', (event) => {
+    if (event.keyCode == 80) {
+        if (!paused) {
+            game.paused = true;
+            clearInterval(clock);
+            clearInterval(spawnFruit);
+            doubleTimeText.visible = false;
+            lifeLostText.visible = false;
+            newHighScoreText.visible = false;
+            pausedText.visible = true;
+            pausedInfoText.visible = true;
+            paused = true;
+        } else {
+            game.paused = false;
+            clock = setInterval(timer, 1000);
+            spawnFruit = setInterval(initFruit, spawnInterval);
+            pausedText.visible = false;
+            pausedInfoText.visible = false;
+            (doubleTime) ? doubleTimeText.visible = true : null;
+            paused = false;
+        }
+    }
+});
+
+window.addEventListener('blur', () => {
+    game.paused = true;
+    clearInterval(clock);
+    clearInterval(spawnFruit);
+    doubleTimeText.visible = false;
+    lifeLostText.visible = false;
+    newHighScoreText.visible = false;
+    pausedText.visible = true;
+    pausedInfoText.visible = true;
+    paused = true;
+});
