@@ -1,4 +1,4 @@
-var version = '1.8';
+var version = '1.9';
 
 class ChangelogSection {
     constructor(header, updateItem1, updateItem2, updateItem3) {
