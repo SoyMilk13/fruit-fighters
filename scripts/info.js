@@ -1,3 +1,4 @@
+new ChangelogSection('Version 1.9 Update:', 'Added pause feature, press "p" to use it.', 'Added announcements when a life is lost.', null);
 new ChangelogSection('Version 1.8 Update:', 'Added the "Almanac"', null, null);
 new ChangelogSection('Version 1.7 Update:', 'Added announcements', 'General bug fixes and background optimizations.', null);
 new ChangelogSection('Version 1.6 Update:', 'Added animations when bombs are clicked.', null, null);
@@ -7,7 +8,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Version 1.8 Update: The Almanac is Here!', 'Added the almanac, a place where you can view information on each different fruit type.');
+new Announcement('Version 1.9 Update:', 'Added a pause feature, (press "p" to use), added messages when a life is lost, and fixed a few minor bugs.');
 
 new Version;
 
