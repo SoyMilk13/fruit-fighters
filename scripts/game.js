@@ -28,6 +28,9 @@ let doubleTimeText;
 let doubleTimeTime = 10;
 let pausedText;
 let pausedInfoText;
+let frozenTime;
+let frozenTimeTime = 5;
+let frozenText;
 
 function preload() {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -38,6 +41,7 @@ function preload() {
     game.load.image('watermelon', 'images/fruit-watermelon.png');
     game.load.image('strawberry', 'images/fruit-strawberry.png');
     game.load.image('pepper', 'images/fruit-pepper.png');
+    game.load.image('frozen-melon', 'images/fruit-frozen-watermelon.png');
     game.load.spritesheet('bomb', 'images/fruit-bomb.png', 64, 64, 4);
     game.load.spritesheet('start-button', 'images/start-button-transparent-hover.png', 120, 40);
     game.load.image('background', 'images/background.png');
@@ -93,6 +97,12 @@ function create() {
     });
     pausedInfoText.anchor.set(0.5);
     pausedInfoText.visible = false;
+    frozenText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, `Freeze! ${frozenTimeTime}`, {
+        font: '20px Arial',
+        fill: 'blue'
+    });
+    frozenText.anchor.set(0.5);
+    frozenText.visible = false;
 };
 function update() {}
 
@@ -109,8 +119,9 @@ function initFruit(value) {
     let right = genRandomNumber(1, 2) == 2;
     let gravityX = genRandomNumber(5, 12);
     let fruitType = genFruitType();
+    let frozenMelon = (fruitType == 'watermelon') ? genRandomNumber(1, 50) == 50 : false;
     let rightSideSpawn = genRandomNumber(1, 2) == 1;
-    let newFruit = game.add.sprite((value == 2) ? ((rightSideSpawn) ? (game.world.width - 600) : game.world.width + 0) : (game.world.width - (genRandomNumber(250, 350))), (value == 2) ? (game.world.height * 0.5) : (game.world.height), `${(pepper) ? 'pepper' : (bomb) ? 'bomb' : fruitType}`, (bomb) ? 0 : null);
+    let newFruit = game.add.sprite((value == 2) ? ((rightSideSpawn) ? (game.world.width - 600) : game.world.width + 0) : (game.world.width - (genRandomNumber(250, 350))), (value == 2) ? (game.world.height * 0.5) : (game.world.height), `${(pepper) ? 'pepper' : (bomb) ? 'bomb' : (frozenMelon) ? 'frozen-melon' : fruitType}`, (bomb) ? 0 : null);
     newFruit.anchor.set(0.5);
     newFruit.scale.set(0.6);
     let explode = newFruit.animations.add('explode', [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3], 10);
@@ -120,6 +131,10 @@ function initFruit(value) {
     newFruit.body.gravity.x = (right) ? gravityX : -gravityX;
     newFruit.inputEnabled = true;
     newFruit.events.onInputDown.add(() => {
+        if (frozenMelon) {
+            frozenTimeTime = 5;
+            freeze();
+        };
         if (pepper) {
             initDoubleTime();
         }
@@ -200,7 +215,7 @@ function initFruit(value) {
 };
 
 function extraSpawns() {
-    if (!paused) {
+    if (!paused && !frozenTime) {
         if (time >= 30) {
             initFruit(1);
         }
@@ -227,6 +242,16 @@ function changeSpawnInterval() {
     }
 };
 
+function freeze() {
+    game.paused = true;
+    clearInterval(spawnFruit);
+    doubleTimeText.visible = false;
+    lifeLostText.visible = false;
+    newHighScoreText.visible = false;
+    frozenText.visible = true;
+    frozenTime = true;
+};
+
 function timer() {
     time++;
     timeSec++;
@@ -236,11 +261,22 @@ function timer() {
     }
     if (doubleTime) {
         doubleTimeTime--;
-        doubleTimeText.setText(`Double Time! ${doubleTimeTime}`);
         if (doubleTimeTime == 0) {
             doubleTime = false;
             doubleTimeText.visible = false;
         }
+        doubleTimeText.setText(`Double Time! ${doubleTimeTime}`);
+    }
+    if (frozenTime) {
+        frozenTimeTime--;
+        if (frozenTimeTime == 0) {
+            frozenTime = false;
+            game.paused = false;
+            spawnFruit = setInterval(initFruit, spawnInterval);
+            frozenText.visible = false;
+            (doubleTime) ? doubleTimeText.visible = true : null;
+        }
+        frozenText.setText(`Freeze! ${frozenTimeTime}`);
     }
     timeText.setText(`${timeMin}:${(timeSec < 10) ? 0 : ''}${timeSec}`);
 };
@@ -314,12 +350,12 @@ function toggleAlmanac(value) {
 };
 
 function changeAlmanacTab(value) {
-    let tabs = ['orangeTab', 'watermelonTab', 'strawberryTab', 'pepperTab', 'bombTab'];
+    let tabs = ['orangeTab', 'watermelonTab', 'strawberryTab', 'pepperTab', 'bombTab', 'moreTab'];
     tabs.forEach(element => document.getElementById(`${element}`).classList.remove('activeAlmanacTab'));
-    document.getElementById(`${(value == 0) ? 'orangeTab' : (value == 1) ? 'watermelonTab' : (value == 2) ? 'strawberryTab' : (value == 3) ? 'pepperTab' : 'bombTab'}`).classList.add('activeAlmanacTab');
-    let pages = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb']
+    document.getElementById(`${(value == 0) ? 'orangeTab' : (value == 1) ? 'watermelonTab' : (value == 2) ? 'strawberryTab' : (value == 3) ? 'pepperTab' : (value == 4) ? 'bombTab' : 'moreTab'}`).classList.add('activeAlmanacTab');
+    let pages = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb', 'almanacContentFrozenWatermelon'];
     pages.forEach(element => document.getElementById(`${element}`).style.display = 'none');
-    document.getElementById(`${(value == 0) ? 'almanacContentOrange' : (value == 1) ? 'almanacContentWatermelon' : (value == 2) ? 'almanacContentStrawberry' : (value == 3) ? 'almanacContentPepper' : 'almanacContentBomb'}`).style.display = 'block';
+    document.getElementById(`${(value == 0) ? 'almanacContentOrange' : (value == 1) ? 'almanacContentWatermelon' : (value == 2) ? 'almanacContentStrawberry' : (value == 3) ? 'almanacContentPepper' : (value == 4) ? 'almanacContentBomb' : 'almanacContentFrozenWatermelon'}`).style.display = 'block';
 };
 
 let totalHeightA;
@@ -329,7 +365,7 @@ function setAlmanacContentHeight() {
     totalHeightA = document.getElementById('almanac').clientHeight;
     titleHeightA = document.getElementById('almanacTop').clientHeight;
     remainingHeightA = (totalHeightA - titleHeightA) - 2;
-    let tabsContent = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb'];
+    let tabsContent = ['almanacContentOrange', 'almanacContentWatermelon', 'almanacContentStrawberry', 'almanacContentPepper', 'almanacContentBomb', 'almanacContentFrozenWatermelon'];
     tabsContent.forEach(element => document.getElementById(`${element}`).style.height = remainingHeightA + 'px');
     window.addEventListener('resize', setAlmanacContentHeight);
 };
@@ -348,7 +384,9 @@ window.addEventListener('keydown', (event) => {
             pausedInfoText.visible = true;
             paused = true;
         } else {
-            game.paused = false;
+            if (!frozenTime) {
+                game.paused = false;
+            }
             clock = setInterval(timer, 1000);
             spawnFruit = setInterval(initFruit, spawnInterval);
             pausedText.visible = false;
