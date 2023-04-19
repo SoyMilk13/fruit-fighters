@@ -150,14 +150,13 @@
     list-style-type: none;
     background-color: rgb(237, 154, 0);
     width: 100%;
-    overflow-y: hidden;
 }
 
-#almanacNav:first-child {
+.almanacTab:first-child {
     padding-left: 1%;
 }
 
-#almanacNav:last-child {
+.almanacTab:last-child {
     padding-right: 1%;
 }
 
@@ -166,11 +165,19 @@
     background-color: rgb(255, 184, 51);
     border: 2px solid black;
     border-bottom: none;
-    padding: 1%;
+    border-top: none;
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .activeAlmanacTab {
     background-color: orange;
+}
+
+.almanacContent {
+    width: 100%;
+    word-wrap: break-word;
 }
 
 #closeAlmanac {
@@ -181,7 +188,27 @@
     font-weight: bold;
 }
 
-.almanacContent {
-    overflow-x: hidden;
-    overflow-y: auto;
+#moreTab {
+    position: relative;
+}
+
+#moreTab:hover .dropdownContent {
+    display: block;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    bottom: -26px;
+    left: -2px;
+    background-color: rgb(255, 184, 51);
+    padding-left: 1%;
+    padding-right: 1%;
+    border: 2px solid black;
+    border-bottom: none;
+    border-top: none;
+}
+
+.dropdownContent p {
+    white-space: nowrap;
 }
