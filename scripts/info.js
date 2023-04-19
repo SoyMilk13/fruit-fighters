@@ -1,3 +1,4 @@
+new ChangelogSection('Version 2.0 (Beta) Update:', 'Added "Frozen Watermelons"', null, null);
 new ChangelogSection('Version 1.9 Update:', 'Added pause feature, press "p" to use it.', 'Added announcements when a life is lost.', null);
 new ChangelogSection('Version 1.8 Update:', 'Added the "Almanac"', null, null);
 new ChangelogSection('Version 1.7 Update:', 'Added announcements', 'General bug fixes and background optimizations.', null);
@@ -8,7 +9,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Version 1.9 Update:', 'Added a pause feature, (press "p" to use), added messages when a life is lost, and fixed a few minor bugs.');
+new Announcement('Version 2.0 (Beta) Update:', 'Added a new fruit and fixed a few minor bugs.');
 
 new Version;
 
@@ -22,5 +23,6 @@ function socialInvite(value) {
 new AlmanacPage('images/fruit-orange.png', 'Orange', '33%', '10', 'None', 'The orange was the first fruit added to Fruit Fighters.');
 new AlmanacPage('images/fruit-watermelon.png', 'Watermelon', '33%', '10', 'None', 'Legend has it that a watermelon variant may be coming soon...');
 new AlmanacPage('images/fruit-strawberry.png', 'Strawberry', '33%', '10', 'None', "Strawberries are the developer's favorite fruit!");
-new AlmanacPage('images/fruit-pepper.png', 'Pepper', '5%', '10', 'When clicked, for 10 seconds, all fruits are worth double points.', 'The pepper was one of the most difficult fruits to create.');
-new AlmanacPage('images/fruit-bomb-almanac-image.png', 'Bomb', '33%', '10', "When clicked, the user is deducted one life. (Don't do this!)", 'The orange was the first fruit added to Fruit Fighters.');
+new AlmanacPage('images/fruit-pepper.png', 'Pepper', '5%', '10', 'When clicked, for 10 seconds, all fruits are worth double points.', 'The pepper was one of the most difficult fruits, (artistically), to create.');
+new AlmanacPage('images/fruit-bomb-almanac-image.png', 'Bomb', '33%', '10', "When clicked, the user is deducted one life. (Don't do this!)", 'Watch out!');
+new AlmanacPage('images/fruit-frozen-watermelon.png', 'Frozen Watermelon', '2%', '10', 'When clicked, all fruits on the sceen are frozen for five seconds.', 'Grown only in the harshest conditions, these legendary fruits are said to be able to freeze time itself.');

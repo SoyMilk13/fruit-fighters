@@ -5,6 +5,7 @@
         <title>Fruit Fighters</title>
         <link href="styles/main.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet" />
         <script src="scripts/phaser.min.js"></script>
     </head>
     <body>
@@ -44,6 +45,12 @@
                     <li id="strawberryTab" class="almanacTab" onclick="changeAlmanacTab(2)">Strawberry</li>
                     <li id="pepperTab" class="almanacTab" onclick="changeAlmanacTab(3)">Pepper</li>
                     <li id="bombTab" class="almanacTab" onclick="changeAlmanacTab(4)">Bomb</li>
+                    <li id="moreTab" class="almanacTab">More
+                        <i class="fa fa-caret-down"></i>
+                        <div class="dropdownContent">
+                            <p onclick="changeAlmanacTab(5)">Frozen Watermelon</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div id="almanacContentOrange" class="almanacContent"></div>
@@ -51,6 +58,7 @@
             <div id="almanacContentStrawberry" class="almanacContent" style="display: none"></div>
             <div id="almanacContentPepper" class="almanacContent" style="display: none"></div>
             <div id="almanacContentBomb" class="almanacContent" style="display: none"></div>
+            <div id="almanacContentFrozenWatermelon" class="almanacContent" style="display: none"></div>
         </div>
         <script src="scripts/game.js"></script>
         <script src="scripts/library.js"></script>
