@@ -157,7 +157,7 @@ class AlmanacPage {
         (description !== null) ? fruitDescriptionText.style.marginLeft = '2%' : null;
         (description !== null) ? fruitDescriptionText.style.fontFamily = 'Mukta Vaani' : null;
 
-        const contentPage = document.getElementById(`${(title == 'Orange') ? 'almanacContentOrange' : (title == 'Watermelon') ? 'almanacContentWatermelon' : (title == 'Strawberry') ? 'almanacContentStrawberry' : (title == 'Pepper') ? 'almanacContentPepper' : 'almanacContentBomb'}`);
+        const contentPage = document.getElementById(`${(title == 'Orange') ? 'almanacContentOrange' : (title == 'Watermelon') ? 'almanacContentWatermelon' : (title == 'Strawberry') ? 'almanacContentStrawberry' : (title == 'Pepper') ? 'almanacContentPepper' : (title == 'Bomb') ? 'almanacContentBomb' : 'almanacContentFrozenWatermelon'}`);
         contentPage.appendChild(fruitName);
         mainSection.appendChild(fruitImage);
         mainStats.appendChild(statsHeader);
