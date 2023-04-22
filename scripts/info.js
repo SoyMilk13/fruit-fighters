@@ -1,4 +1,4 @@
-new ChangelogSection('Version 2.0 Update:', 'Replaced lives text with heart icons.', 'Updated double time text to "Double Points!"', null);
+new ChangelogSection('Version 2.0 Update:', 'Replaced lives text with heart icons.', 'Updated double time text to "Double points!"', null);
 new ChangelogSection('Version 2.0 (Beta) Update:', 'Added "Frozen Watermelons"', null, null);
 new ChangelogSection('Version 1.9 Update:', 'Added pause feature, press "p" to use it.', 'Added announcements when a life is lost.', null);
 new ChangelogSection('Version 1.8 Update:', 'Added the "Almanac"', null, null);
