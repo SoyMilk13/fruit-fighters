@@ -1,4 +1,4 @@
-var version = '(Beta) 2.0';
+var version = '2.0';
 
 class ChangelogSection {
     constructor(header, updateItem1, updateItem2, updateItem3) {
@@ -9,7 +9,7 @@ class ChangelogSection {
         updateSection.style.marginBottom = '1%';
         updateSection.style.fontFamily = 'Mukta Vaani';
 
-        const updateHeader = document.createElement('plaintext');
+        const updateHeader = document.createElement('p');
         updateHeader.innerHTML = header;
         updateHeader.style.fontWeight = 'bold';
         updateHeader.style.fontSize = '16px';
@@ -64,7 +64,7 @@ class Announcement {
         announcementBox.style.backgroundColor = 'orange';
         announcementBox.style.fontFamily = 'Mukta Vaani';
 
-        const announcementTitle = document.createElement('plaintext');
+        const announcementTitle = document.createElement('p');
         announcementTitle.innerHTML = title;
         announcementTitle.style.textAlign = 'center';
         announcementTitle.style.fontWeight = 'bold';
@@ -72,12 +72,12 @@ class Announcement {
         announcementTitle.style.marginBottom = '1%';
         announcementTitle.style.fontFamily = 'Mukta Vaani';
 
-        const announcementContent = document.createElement('plaintext');
+        const announcementContent = document.createElement('p');
         announcementContent.innerHTML = content;
         announcementContent.style.textAlign = 'center';
         announcementContent.style.fontFamily = 'Mukta Vaani';
 
-        const closeButton = document.createElement('plaintext');
+        const closeButton = document.createElement('p');
         closeButton.innerHTML = 'X';
         closeButton.style.position = 'absolute';
         closeButton.style.top = 0;
@@ -117,7 +117,7 @@ class AlmanacPage {
         mainSection.style.display = 'flex';
         mainSection.style.alignItems = 'center';
 
-        const fruitName = document.createElement('plaintext');
+        const fruitName = document.createElement('p');
         fruitName.innerHTML = title;
         fruitName.style.position = 'absolute';
         fruitName.style.left = '50%';
@@ -129,30 +129,30 @@ class AlmanacPage {
 
         const mainStats = document.createElement('div');
 
-        const statsHeader = document.createElement('plaintext');
+        const statsHeader = document.createElement('p');
         statsHeader.innerHTML = 'Stats:';
         statsHeader.style.fontWeight = 'bold';
         statsHeader.style.fontFamily = 'Mukta Vaani';
 
-        const spawnRateText = document.createElement('plaintext');
+        const spawnRateText = document.createElement('p');
         spawnRateText.innerHTML = 'Spawn Rate: ' + spawnRate;
         spawnRateText.style.fontFamily = 'Mukta Vaani';
 
-        const pointValueText = document.createElement('plaintext');
+        const pointValueText = document.createElement('p');
         pointValueText.innerHTML = 'Points Per Click: ' + pointValue;
         pointValueText.style.fontFamily = 'Mukta Vaani';
 
-        const specialFactsText = document.createElement('plaintext');
+        const specialFactsText = document.createElement('p');
         specialFactsText.innerHTML = 'Special Attributes: ' + specialFacts;
         specialFactsText.style.fontFamily = 'Mukta Vaani';
 
-        const otherInfoHeader = document.createElement('plaintext');
+        const otherInfoHeader = document.createElement('p');
         otherInfoHeader.innerHTML = 'Other Information:';
         otherInfoHeader.style.fontWeight = 'bold';
         otherInfoHeader.style.marginLeft = '2%';
         otherInfoHeader.style.fontFamily = 'Mukta Vaani';
 
-        const fruitDescriptionText = (description !== null) ? document.createElement('plaintext') : null;
+        const fruitDescriptionText = (description !== null) ? document.createElement('p') : null;
         (description !== null) ? fruitDescriptionText.innerHTML = description : null;
         (description !== null) ? fruitDescriptionText.style.marginLeft = '2%' : null;
         (description !== null) ? fruitDescriptionText.style.fontFamily = 'Mukta Vaani' : null;
@@ -176,7 +176,7 @@ class Version {
         this.Draw();
     };
     Draw() {
-        const versionText = document.createElement('plaintext');
+        const versionText = document.createElement('p');
         versionText.innerHTML = 'Version ' + version;
         versionText.style.position = 'absolute';
         versionText.style.bottom = 0;
