@@ -1,3 +1,4 @@
+new ChangelogSection('Version 2.0 Update:', 'Replaced lives text with heart icons.', 'Updated double time text to "Double Points!"', null);
 new ChangelogSection('Version 2.0 (Beta) Update:', 'Added "Frozen Watermelons"', null, null);
 new ChangelogSection('Version 1.9 Update:', 'Added pause feature, press "p" to use it.', 'Added announcements when a life is lost.', null);
 new ChangelogSection('Version 1.8 Update:', 'Added the "Almanac"', null, null);
@@ -9,7 +10,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Version 2.0 (Beta) Update:', 'Added a new fruit and fixed a few minor bugs.');
+new Announcement('Version 2.0 Update:', 'Replaced lives text with icons designed by @rossesarerosie and updated double time text so that it is easier to understand.');
 
 new Version;
 
