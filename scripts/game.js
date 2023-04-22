@@ -87,7 +87,7 @@ function create() {
         0
     );
     startButton.anchor.set(0.5);
-    doubleTimeText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, `Double time! ${doubleTimeTime}`, {
+    doubleTimeText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, `Double points! ${doubleTimeTime}`, {
         font: '20px Arial',
         fill: 'orange'
     });
