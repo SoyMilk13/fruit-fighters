@@ -176,8 +176,7 @@
 }
 
 .almanacContent {
-    width: 100%;
-    word-wrap: break-word;
+    white-space: nowrap;
 }
 
 #closeAlmanac {
