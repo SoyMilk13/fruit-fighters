@@ -31,6 +31,12 @@ let pausedInfoText;
 let frozenTime;
 let frozenTimeTime = 5;
 let frozenText;
+let heart1;
+let heart2;
+let heart3;
+let lifeLostAnim1;
+let lifeLostAnim2;
+let lifeLostAnim3;
 
 function preload() {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -45,6 +51,7 @@ function preload() {
     game.load.spritesheet('bomb', 'images/fruit-bomb.png', 64, 64, 4);
     game.load.spritesheet('start-button', 'images/start-button-transparent-hover.png', 120, 40);
     game.load.image('background', 'images/background.png');
+    game.load.spritesheet('lives-heart', 'images/lives-heart.png', 64, 64, 6);
 };
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -54,6 +61,7 @@ function create() {
     scoreText = game.add.text(5, 25, 'Score: 0', style);
     livesText = game.add.text(game.world.width - 5, 5, 'Lives: 3', style);
     livesText.anchor.set(1, 0);
+    livesText.visible = false;
     lifeLostText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, 'Life Lost!', {
         font: '20px Arial',
         fill: 'red'
@@ -79,7 +87,7 @@ function create() {
         0
     );
     startButton.anchor.set(0.5);
-    doubleTimeText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, `Double time! ${doubleTimeTime}`, {
+    doubleTimeText = game.add.text(game.world.width * 0.5, game.world.height * 0.5, `Double points! ${doubleTimeTime}`, {
         font: '20px Arial',
         fill: 'orange'
     });
@@ -103,6 +111,18 @@ function create() {
     });
     frozenText.anchor.set(0.5);
     frozenText.visible = false;
+    heart1 = game.add.sprite(game.world.width - 60, 5, 'lives-heart', 0);
+    heart1.anchor.set(1, 0);
+    heart1.scale.set(0.4);
+    heart2 = game.add.sprite(game.world.width - 32.5, 5, 'lives-heart', 0);
+    heart2.anchor.set(1, 0);
+    heart2.scale.set(0.4);
+    heart3 = game.add.sprite(game.world.width - 5, 5, 'lives-heart', 0);
+    heart3.anchor.set(1, 0);
+    heart3.scale.set(0.4);
+    lifeLostAnim1 = heart1.animations.add('life-lost', [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]);
+    lifeLostAnim2 = heart2.animations.add('life-lost', [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]);
+    lifeLostAnim3 = heart3.animations.add('life-lost', [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]);
 };
 function update() {}
 
@@ -155,6 +175,7 @@ function initFruit(value) {
                 newFruit.kill();
             }, this);
             lives--;
+            lifeLost();
             if (doubleTime) {
                 doubleTimeText.visible = false;
                 lifeLostText.visible = true;
@@ -184,6 +205,7 @@ function initFruit(value) {
     newFruit.events.onOutOfBounds.add(() => {
         if (!bomb) {
             lives--;
+            lifeLost();
             if (doubleTime) {
                 doubleTimeText.visible = false;
                 lifeLostText.visible = true;
@@ -279,6 +301,35 @@ function timer() {
         frozenText.setText(`Freeze! ${frozenTimeTime}`);
     }
     timeText.setText(`${timeMin}:${(timeSec < 10) ? 0 : ''}${timeSec}`);
+};
+
+function lifeLost() {
+    if (lives == 2) {
+        heart1.animations.play('life-lost', 15, false);
+        lifeLostAnim1.onComplete.add(() => {
+            heart1.visible = false;
+        }, this);
+        let lostHeart1 = game.add.sprite(game.world.width - 60, 5, 'lives-heart', 5);
+        lostHeart1.anchor.set(1, 0);
+        lostHeart1.scale.set(0.4);
+    } else if (lives == 1) {
+        heart2.animations.play('life-lost', 15, false);
+        lifeLostAnim2.onComplete.add(() => {
+            heart2.visible = false;
+        }, this);
+        let lostHeart2 = game.add.sprite(game.world.width - 32.5, 5, 'lives-heart', 5);
+        lostHeart2.anchor.set(1, 0);
+        lostHeart2.scale.set(0.4);
+    } else if (lives == 0) {
+        heart3.animations.play('life-lost', 15, false);
+        heart3.animations.play('life-lost', 15, false);
+        lifeLostAnim3.onComplete.add(() => {
+            heart3.visible = false;
+        }, this);
+        let lostHeart3 = game.add.sprite(game.world.width - 5, 5, 'lives-heart', 5);
+        lostHeart3.anchor.set(1, 0);
+        lostHeart3.scale.set(0.4);
+    }
 };
 
 function genFruitType() {
