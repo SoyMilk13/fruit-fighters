@@ -10,7 +10,7 @@ new ChangelogSection('Version 1.3 Update:', 'Added "How to Play" section.', null
 new ChangelogSection('Version 1.2 Update:', 'Added "Changelog"', null, null);
 new ChangelogSection('Version 1.1 Update:', 'Added "Watermelons"', 'Fixed bug where fruits spawned off-screen.', null);
 
-new Announcement('Version 2.0 Update:', 'Replaced lives text with icons designed by @rossesarerosie and updated double time text so that it is easier to understand.');
+new Announcement('New link!', 'This link is now officially outdated. It will no longer be updated, as I plan to move all nwe content to Food Fighters. To play the new version, go to: https://soymilk13.github.io/food-fighters/.');
 
 new Version;
 
